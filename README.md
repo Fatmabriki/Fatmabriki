@@ -1,16 +1,17 @@
-## Hi there 👋
+# Hello, I'm Fatema Al Buriki 👋
 
-<!--
-**Fatmabriki/Fatmabriki** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+## About Me
+I'm a Software Engineer and System Engineer passionate about creating innovative solutions through code.
 
-Here are some ideas to get you started:
+## Technical Skills
+- **Programming Languages:** Python, C++, C#, Java, SQL, PHP
+- **Technologies:** Machine Learning, Blockchain basics, IoT
+- **Cloud:** AWS Cloud Computing
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Connect With Me
+- LinkedIn: [Fatema Al Buriki](https://www.linkedin.com/in/fatema-al-buriki-5ba012293/)
+- GitHub: [Fatmabriki](https://github.com/Fatmabriki)
+
+---
+
+Building the future, one line of code at a time.
