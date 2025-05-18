@@ -14,4 +14,5 @@ I'm a Software Engineer and System Engineer passionate about creating innovative
 
 ---
 
-Building the future, one line of code at a time.
+
+*"Building the future, one line of code at a time."*
