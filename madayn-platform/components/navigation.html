@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="/workspace/madayn-platform/index.html">
+      <span class="d-inline-flex align-items-center justify-content-center" aria-label="Madayn logo">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <rect width="64" height="64" rx="14" fill="#4A1A4A"></rect>
+          <path d="M16 40L26 24l6 8 6-8 10 16" stroke="#E89B5A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="fw-bold" style="color: var(--color-primary)">مدائن</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/workspace/madayn-platform/pages/public/surveys-list.html">الاستطلاعات</a></li>
+        <li class="nav-item"><a class="nav-link" href="/workspace/madayn-platform/pages/public/news-feed.html">الأخبار</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">الدليل</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/workspace/madayn-platform/pages/public/consultants-directory.html">المستشارون</a></li>
+            <li><a class="dropdown-item" href="/workspace/madayn-platform/pages/public/contractors-directory.html">المقاولون</a></li>
+          </ul>
+        </li>
+        <li class="nav-item d-none" data-admin-only><a class="nav-link" href="/workspace/madayn-platform/pages/admin/dashboard.html">لوحة الإدارة</a></li>
+      </ul>
+      <div class="d-flex align-items-center gap-2">
+        <span class="text-muted small">مرحباً، <span data-user-name>ضيف</span></span>
+        <a class="btn btn-outline-secondary" data-action="login" href="/workspace/madayn-platform/pages/auth/login.html">تسجيل الدخول</a>
+        <a class="btn btn-secondary d-none" data-action="logout" href="#">تسجيل الخروج</a>
+      </div>
+    </div>
+  </div>
+  <style> .btn-outline-secondary{ border-color: var(--color-secondary); color: var(--color-secondary); } .btn-outline-secondary:hover{ background: var(--color-secondary); color:#fff } .btn-secondary{ background: var(--color-secondary); border-color: var(--color-secondary) } </style>
+</nav>

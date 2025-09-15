@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>إدارة الاستطلاعات - مدائن</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/workspace/madayn-platform/css/bootstrap-rtl.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="/workspace/madayn-platform/css/style.css">
+</head>
+<body>
+  <header id="app-header" data-include="/workspace/madayn-platform/components/navigation.html"></header>
+  <main class="container py-4">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <h3 class="mb-0">إدارة الاستطلاعات</h3>
+      <button id="btn-new" class="btn btn-primary">استطلاع جديد</button>
+    </div>
+    <div class="row g-3">
+      <div class="col-lg-7">
+        <div class="card">
+          <div class="card-body">
+            <table id="tbl-surveys" class="table table-striped" style="width:100%">
+              <thead><tr><th>#</th><th>العنوان</th><th>الحالة</th><th>الإجراءات</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="card">
+          <div class="card-body">
+            <h6 class="fw-bold">نموذج الاستطلاع</h6>
+            <div class="vstack gap-2">
+              <input id="s-title" class="form-control" placeholder="عنوان الاستطلاع">
+              <textarea id="s-desc" class="form-control" rows="3" placeholder="وصف مختصر"></textarea>
+              <div class="form-check form-switch">
+                <input id="s-active" class="form-check-input" type="checkbox" checked>
+                <label class="form-check-label" for="s-active">نشط</label>
+              </div>
+              <div class="hstack gap-2">
+                <button id="btn-save" class="btn btn-success">حفظ</button>
+                <button id="btn-reset" class="btn btn-outline-secondary">تفريغ</button>
+              </div>
+            </div>
+            <hr>
+            <h6 class="fw-bold">الأسئلة</h6>
+            <div id="questions" class="vstack gap-2"></div>
+            <button id="btn-add-question" class="btn btn-accent mt-2">إضافة سؤال</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer id="app-footer" data-include="/workspace/madayn-platform/components/footer.html"></footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.all.min.js"></script>
+  <script src="/workspace/madayn-platform/js/app.js"></script>
+  <script>
+    const state = { currentId: null };
+    function loadTable(){
+      const tbody = document.querySelector('#tbl-surveys tbody');
+      const data = MADAYN.api.listSurveys();
+      tbody.innerHTML = data.map(s=>`<tr><td>${s.surveyId}</td><td>${s.title}</td><td>${s.isActive? 'نشط':'غير نشط'}</td><td>
+        <button class='btn btn-sm btn-primary' data-edit='${s.surveyId}'>تعديل</button>
+        <button class='btn btn-sm btn-danger' data-del='${s.surveyId}'>حذف</button>
+      </td></tr>`).join('');
+      MADAYN.admin.bindDataTable('#tbl-surveys');
+      tbody.querySelectorAll('[data-edit]').forEach(btn=> btn.addEventListener('click',()=> edit(+btn.dataset.edit)));
+      tbody.querySelectorAll('[data-del]').forEach(btn=> btn.addEventListener('click',()=> del(+btn.dataset.del)));
+    }
+    function edit(id){
+      const s = MADAYN.api.listSurveys().find(x=>x.surveyId==id);
+      if (!s) return;
+      state.currentId = s.surveyId;
+      document.getElementById('s-title').value = s.title;
+      document.getElementById('s-desc').value = s.description||'';
+      document.getElementById('s-active').checked = !!s.isActive;
+      renderQuestions(id);
+    }
+    function del(id){
+      Swal.fire({ title:'تأكيد الحذف؟', icon:'warning', showCancelButton:true, confirmButtonText:'نعم', cancelButtonText:'لا' }).then(r=>{
+        if (!r.isConfirmed) return;
+        MADAYN.api.deleteSurvey(id); loadTable();
+      });
+    }
+    function reset(){ state.currentId = null; document.getElementById('s-title').value=''; document.getElementById('s-desc').value=''; document.getElementById('s-active').checked=true; document.getElementById('questions').innerHTML=''; }
+    document.getElementById('btn-reset').addEventListener('click', reset);
+    document.getElementById('btn-new').addEventListener('click', reset);
+    document.getElementById('btn-save').addEventListener('click', ()=>{
+      const title = document.getElementById('s-title').value.trim();
+      const desc = document.getElementById('s-desc').value.trim();
+      const isActive = document.getElementById('s-active').checked ? 1 : 0;
+      if (!title) return Swal.fire({ icon:'warning', title:'أدخل العنوان' });
+      const s = MADAYN.api.saveSurvey({ surveyId: state.currentId, title, description: desc, createdBy: MADAYN.auth.current()?.userId ?? 1, isActive });
+      state.currentId = s.surveyId; loadTable(); Swal.fire({ icon:'success', title:'تم الحفظ' });
+    });
+    document.getElementById('btn-add-question').addEventListener('click', ()=>{
+      if (!state.currentId) return Swal.fire({ icon:'info', title:'احفظ الاستطلاع أولاً' });
+      addQuestion(state.currentId);
+    });
+    function addQuestion(surveyId){
+      Swal.fire({ title:'إضافة سؤال', html:`
+        <input id='q-text' class='swal2-input' placeholder='نص السؤال'>
+        <select id='q-type' class='swal2-select'>
+          <option>MultipleChoice</option>
+          <option>Text</option>
+          <option>Rating</option>
+          <option>YesNo</option>
+        </select>
+        <input id='q-opts' class='swal2-input' placeholder='خيارات (مفصولة بفواصل)'>
+        <label class='swal2-checkbox'><input type='checkbox' id='q-req' checked> مطلوب</label>
+      `, focusConfirm:false, showCancelButton:true, confirmButtonText:'إضافة' }).then(r=>{
+        if (!r.isConfirmed) return;
+        const text = document.getElementById('q-text').value.trim();
+        const type = document.getElementById('q-type').value;
+        const opts = document.getElementById('q-opts').value.trim();
+        const req = document.getElementById('q-req').checked ? 1 : 0;
+        if (!text) return;
+        const list = MADAYN.utils.load('madayn_questions', []);
+        const orderIndex = list.filter(q=> q.surveyId==surveyId).length + 1;
+        const question = { questionId: list.length? Math.max(...list.map(x=>x.questionId))+1:1, surveyId, questionText: text, questionType: type, options: type==='MultipleChoice'? JSON.stringify(opts.split(',').map(x=>x.trim()).filter(Boolean)) : null, isRequired: req, orderIndex };
+        list.push(question); MADAYN.utils.save('madayn_questions', list); renderQuestions(surveyId);
+      });
+    }
+    function renderQuestions(surveyId){
+      const holder = document.getElementById('questions');
+      const list = MADAYN.api.listQuestions(surveyId);
+      holder.innerHTML = list.map(q=> `<div class='p-2 border rounded d-flex align-items-center justify-content-between'>
+        <div>
+          <div class='fw-bold'>${q.questionText}</div>
+          <div class='text-muted small'>${q.questionType}${q.isRequired? ' • مطلوب':''}</div>
+        </div>
+        <div class='hstack gap-2'>
+          <button class='btn btn-sm btn-outline-secondary' data-up='${q.questionId}'>↑</button>
+          <button class='btn btn-sm btn-outline-secondary' data-down='${q.questionId}'>↓</button>
+          <button class='btn btn-sm btn-danger' data-delq='${q.questionId}'>حذف</button>
+        </div>
+      </div>`).join('');
+      holder.querySelectorAll('[data-delq]').forEach(b=> b.addEventListener('click',()=>{
+        const all = MADAYN.utils.load('madayn_questions', []);
+        MADAYN.utils.save('madayn_questions', all.filter(x=> x.questionId != +b.dataset.delq));
+        renderQuestions(surveyId);
+      }));
+      holder.querySelectorAll('[data-up]').forEach(b=> b.addEventListener('click',()=> move(surveyId, +b.dataset.up, -1)));
+      holder.querySelectorAll('[data-down]').forEach(b=> b.addEventListener('click',()=> move(surveyId, +b.dataset.down, +1)));
+    }
+    function move(surveyId, qid, delta){
+      const all = MADAYN.utils.load('madayn_questions', []);
+      const list = all.filter(q=> q.surveyId==surveyId).sort((a,b)=> a.orderIndex-b.orderIndex);
+      const idx = list.findIndex(q=> q.questionId==qid);
+      if (idx<0) return;
+      const swapIdx = idx + delta;
+      if (swapIdx<0 || swapIdx>=list.length) return;
+      const a = list[idx], b = list[swapIdx];
+      const tmp = a.orderIndex; a.orderIndex = b.orderIndex; b.orderIndex = tmp;
+      const merged = all.map(q=> q.questionId==a.questionId? a : q.questionId==b.questionId? b : q);
+      MADAYN.utils.save('madayn_questions', merged);
+      renderQuestions(surveyId);
+    }
+    document.addEventListener('DOMContentLoaded', ()=>{ loadTable(); });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,14 @@
+<footer class="bg-white border-top py-4">
+  <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+    <div class="d-flex align-items-center gap-2">
+      <span class="fw-bold" style="color: var(--color-primary)">منصة مدائن</span>
+      <span class="text-muted">© <span id="year"></span></span>
+    </div>
+    <div class="social">
+      <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+    </div>
+  </div>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</footer>
