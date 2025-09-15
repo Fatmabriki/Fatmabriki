@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "نتائجي";
+}
+
+<div class="card card-shadow border-0">
+    <div class="card-body">
+        <h5 class="mb-3"><i class="fa-solid fa-chart-pie ms-2"></i>نتائج الاستبيانات</h5>
+        <canvas id="resultsChart" height="140"></canvas>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const rc = document.getElementById('resultsChart');
+        if (rc) { new Chart(rc, { type:'doughnut', data:{ labels:['A','B','C'], datasets:[{ data:[10,5,3], backgroundColor:['#4A1A4A','#B85450','#E89B5A'] }] } }); }
+    </script>
+}
+

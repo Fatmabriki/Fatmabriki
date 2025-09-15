@@ -1,0 +1,103 @@
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "لوحة التحكم";
+}
+
+<div class="row g-3">
+    <div class="col-md-3">
+        <div class="card card-shadow border-0">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="text-muted small">المستخدمون</div>
+                        <div class="fs-4 fw-bold">0</div>
+                    </div>
+                    <i class="fa-solid fa-users fa-2x text-primary-purple"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-shadow border-0">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="text-muted small">الاستبيانات النشطة</div>
+                        <div class="fs-4 fw-bold">0</div>
+                    </div>
+                    <i class="fa-solid fa-clipboard-list fa-2x text-primary-purple"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-shadow border-0">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="text-muted small">الأخبار المنشورة</div>
+                        <div class="fs-4 fw-bold">0</div>
+                    </div>
+                    <i class="fa-solid fa-newspaper fa-2x text-primary-purple"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-shadow border-0">
+            <div class="card-body">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="text-muted small">معدلات الإكمال</div>
+                        <div class="fs-4 fw-bold">0%</div>
+                    </div>
+                    <i class="fa-solid fa-chart-line fa-2x text-primary-purple"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-4 mt-1">
+    <div class="col-lg-8">
+        <div class="card card-shadow border-0">
+            <div class="card-header bg-white"><i class="fa-solid fa-chart-column ms-2"></i>إحصائيات</div>
+            <div class="card-body">
+                <canvas id="chartUsers" height="120"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card card-shadow border-0">
+            <div class="card-header bg-white"><i class="fa-solid fa-bolt ms-2"></i>آخر النشاطات</div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">لا يوجد بيانات بعد</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('chartUsers');
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['يناير','فبراير','مارس','أبريل','مايو','يونيو'],
+                    datasets: [{
+                        label: 'تسجيل المستخدمين',
+                        data: [0,0,0,0,0,0],
+                        borderColor: '#4A1A4A',
+                        backgroundColor: 'rgba(74,26,74,0.1)'
+                    }]
+                },
+                options: {responsive: true, maintainAspectRatio: false}
+            });
+        }
+    </script>
+}
+

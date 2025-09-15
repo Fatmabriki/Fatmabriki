@@ -1,0 +1,29 @@
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "الأخبار";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="m-0"><i class="fa-solid fa-newspaper ms-2"></i>إدارة الأخبار</h5>
+    <a class="btn btn-accent" asp-controller="News" asp-action="Create"><i class="fa-solid fa-plus ms-1"></i>خبر جديد</a>
+</div>
+<div class="card card-shadow border-0">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>العنوان</th>
+                        <th>الحالة</th>
+                        <th>تاريخ النشر</th>
+                        <th>إجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="4" class="text-center text-muted">لا توجد بيانات</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

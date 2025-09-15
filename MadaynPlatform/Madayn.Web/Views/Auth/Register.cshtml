@@ -1,0 +1,26 @@
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewData["Title"] = "إنشاء حساب";
+}
+
+<div class="card card-shadow border-0">
+  <div class="card-body p-4">
+    <h4 class="mb-3 text-center">إنشاء حساب</h4>
+    <form>
+      <div class="mb-3">
+        <label class="form-label">الاسم</label>
+        <input class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">البريد الإلكتروني</label>
+        <input type="email" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">كلمة المرور</label>
+        <input type="password" class="form-control" />
+      </div>
+      <button class="btn btn-accent w-100" type="submit">تسجيل</button>
+    </form>
+  </div>
+</div>
+
