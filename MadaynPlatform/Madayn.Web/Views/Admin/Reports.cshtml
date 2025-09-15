@@ -1,0 +1,20 @@
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "التقارير";
+}
+
+<div class="card card-shadow border-0">
+    <div class="card-body">
+        <h5 class="mb-3"><i class="fa-solid fa-chart-line ms-2"></i>التقارير والرسوم البيانية</h5>
+        <canvas id="chartReports" height="160"></canvas>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const cr = document.getElementById('chartReports');
+        if (cr) { new Chart(cr, { type:'bar', data:{ labels:['A','B','C'], datasets:[{ label:'قيم', data:[5,3,8], backgroundColor:'#E89B5A'}] } }); }
+    </script>
+}
+

@@ -1,0 +1,33 @@
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "الاستبيانات";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="m-0"><i class="fa-solid fa-clipboard-list ms-2"></i>إدارة الاستبيانات</h5>
+    <button class="btn btn-accent"><i class="fa-solid fa-plus ms-1"></i>استبيان جديد</button>
+</div>
+<div class="card card-shadow border-0">
+    <div class="card-body">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="بحث...">
+            <button class="btn btn-outline-secondary">بحث</button>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>العنوان</th>
+                        <th>الحالة</th>
+                        <th>الفترة</th>
+                        <th>إجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td colspan="4" class="text-center text-muted">لا توجد بيانات</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

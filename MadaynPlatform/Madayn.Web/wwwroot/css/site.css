@@ -1,0 +1,50 @@
+html {
+  font-size: 14px;
+  font-family: 'Tajawal', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  background-color: #F8F6F9;
+  color: #2b2b2b;
+}
+
+/* RTL helper */
+.bg-light-rtl { background-color: #F8F6F9 !important; }
+
+/* Brand colors */
+:root {
+  --primary-purple: #4A1A4A;
+  --secondary-red: #B85450;
+  --accent-orange: #E89B5A;
+}
+
+.btn-accent {
+  background-color: var(--accent-orange);
+  color: #fff;
+}
+.btn-accent:hover { filter: brightness(0.95); color:#fff; }
+
+.text-primary-purple { color: var(--primary-purple) !important; }
+.bg-primary-purple { background-color: var(--primary-purple) !important; }
+.border-primary-purple { border-color: var(--primary-purple) !important; }
+
+.text-secondary-red { color: var(--secondary-red) !important; }
+.bg-secondary-red { background-color: var(--secondary-red) !important; }
+
+.card-shadow { box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
