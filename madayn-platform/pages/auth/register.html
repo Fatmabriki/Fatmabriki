@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>تسجيل حساب - مدائن</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/workspace/madayn-platform/css/bootstrap-rtl.min.css">
+  <link rel="stylesheet" href="/workspace/madayn-platform/css/style.css">
+</head>
+<body>
+  <main class="container py-5" style="max-width:520px;">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <h4 class="text-center mb-4" style="color: var(--color-primary)">إنشاء حساب جديد</h4>
+        <div class="vstack gap-2">
+          <label class="form-label">الاسم الكامل</label>
+          <input id="name" class="form-control" placeholder="الاسم">
+          <label class="form-label">البريد الإلكتروني</label>
+          <input id="email" type="email" class="form-control" placeholder="name@example.com">
+          <label class="form-label">كلمة المرور</label>
+          <input id="password" type="password" class="form-control" placeholder="••••••">
+          <button id="btn-register" class="btn btn-primary mt-2">تسجيل</button>
+          <a href="/workspace/madayn-platform/pages/auth/login.html" class="btn btn-outline-secondary">لدي حساب بالفعل</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.all.min.js"></script>
+  <script src="/workspace/madayn-platform/js/app.js"></script>
+  <script>
+    document.getElementById('btn-register').addEventListener('click', ()=>{
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      if (!name || !email || !password) return Swal.fire({ icon:'warning', title:'أكمل جميع الحقول' });
+      const r = MADAYN.auth.register(name, email, password);
+      if (!r.ok) return Swal.fire({ icon:'error', title:r.message });
+      Swal.fire({ icon:'success', title:'تم إنشاء الحساب' }).then(()=> location.href='/workspace/madayn-platform/index.html');
+    });
+  </script>
+</body>
+</html>
+

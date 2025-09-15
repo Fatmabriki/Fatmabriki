@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>منصة مدائن للاستطلاعات</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/workspace/madayn-platform/css/bootstrap-rtl.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkfWnZz7T2JpY1S5GN1GaxzwoXmxjSPdZRhqU5Zf0+Y8SV4nUM2GqQfXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" href="/workspace/madayn-platform/css/animations.css">
+  <link rel="stylesheet" href="/workspace/madayn-platform/css/style.css">
+</head>
+<body class="bg-light-100">
+  <header id="app-header" data-include="/workspace/madayn-platform/components/navigation.html"></header>
+
+  <main class="container py-5">
+    <section class="row align-items-center g-4">
+      <div class="col-lg-6 order-2 order-lg-1">
+        <h1 class="display-5 fw-bold text-primary-600 mb-3">منصة مدائن للاستطلاعات</h1>
+        <p class="lead text-muted mb-4">
+          منصة حديثة لقياس آراء المستثمرين وإدارة الأخبار ودليل المستشارين والمقاولين مع نظام تقييم متكامل وتقارير تفاعلية.
+        </p>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="/workspace/madayn-platform/pages/public/surveys-list.html" class="btn btn-primary btn-lg px-4">
+            ابدأ استطلاعاً الآن
+          </a>
+          <a href="/workspace/madayn-platform/pages/public/news-feed.html" class="btn btn-accent btn-lg px-4">
+            تصفح الأخبار
+          </a>
+        </div>
+        <div class="mt-4 small text-muted">
+          دخول الضيوف متاح بدون تسجيل | <a href="/workspace/madayn-platform/pages/auth/login.html" class="link-secondary">تسجيل الدخول</a>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center order-1 order-lg-2">
+        <div class="hero-graphic shadow-sm rounded-4 p-4 bg-white">
+          <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
+            <div class="stat-card">
+              <div class="stat-value">92%</div>
+              <div class="stat-label">نسبة إكمال الاستطلاعات</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">4.6</div>
+              <div class="stat-label">متوسط التقييمات</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">+1.2k</div>
+              <div class="stat-label">مشارك نشط</div>
+            </div>
+          </div>
+          <hr>
+          <div class="text-muted">تجربة عربية كاملة، اتجاه من اليمين إلى اليسار، ومتجاوبة مع جميع الأجهزة.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="row mt-5 g-4">
+      <div class="col-md-6 col-xl-3">
+        <div class="card feature-card h-100">
+          <div class="card-body">
+            <div class="feature-icon bg-primary-50 text-primary-700"><i class="fa-solid fa-list-check"></i></div>
+            <h5 class="card-title">إدارة الاستطلاعات</h5>
+            <p class="card-text">إنشاء أسئلة متنوعة وتتبع التقدم والحفظ التلقائي ودعم الضيوف.</p>
+            <a class="stretched-link" href="/workspace/madayn-platform/pages/admin/surveys-management.html">تفاصيل</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="card feature-card h-100">
+          <div class="card-body">
+            <div class="feature-icon bg-secondary-50 text-secondary-700"><i class="fa-solid fa-newspaper"></i></div>
+            <h5 class="card-title">إدارة الأخبار</h5>
+            <p class="card-text">نشر المقالات بصور ومحتوى منسق مع تقييمات وتعليقات.</p>
+            <a class="stretched-link" href="/workspace/madayn-platform/pages/admin/news-management.html">تفاصيل</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="card feature-card h-100">
+          <div class="card-body">
+            <div class="feature-icon bg-accent-50 text-accent-700"><i class="fa-solid fa-user-tie"></i></div>
+            <h5 class="card-title">دليل المستشارين/المقاولين</h5>
+            <p class="card-text">بحث وتصنيف وتقييم الخدمات بواجهة عربية سلسة.</p>
+            <a class="stretched-link" href="/workspace/madayn-platform/pages/public/consultants-directory.html">تصفح</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-xl-3">
+        <div class="card feature-card h-100">
+          <div class="card-body">
+            <div class="feature-icon bg-purple-50 text-purple-700"><i class="fa-solid fa-chart-line"></i></div>
+            <h5 class="card-title">لوحة التقارير</h5>
+            <p class="card-text">إحصائيات تفاعلية مع تصدير PDF/Excel.</p>
+            <a class="stretched-link" href="/workspace/madayn-platform/pages/admin/dashboard.html">عرض اللوحة</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="app-footer" data-include="/workspace/madayn-platform/components/footer.html" class="mt-auto"></footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+
+  <script src="/workspace/madayn-platform/js/app.js"></script>
+  <script src="/workspace/madayn-platform/js/surveys.js"></script>
+  <script src="/workspace/madayn-platform/js/ratings.js"></script>
+  <script src="/workspace/madayn-platform/js/charts.js"></script>
+</body>
+</html>
+
