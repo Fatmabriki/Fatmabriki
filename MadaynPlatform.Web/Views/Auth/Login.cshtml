@@ -1,0 +1,33 @@
+@model MadaynPlatform.Web.Controllers.AuthController.LoginViewModel
+@{
+    ViewData["Title"] = "تسجيل الدخول";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="mb-4 text-center">تسجيل الدخول</h3>
+                    <form asp-action="Login" method="post">
+                        <div class="mb-3">
+                            <label class="form-label">البريد الإلكتروني</label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">كلمة المرور</label>
+                            <input asp-for="Password" type="password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input asp-for="RememberMe" class="form-check-input" />
+                            <label class="form-check-label" for="RememberMe">تذكرني</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">دخول</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

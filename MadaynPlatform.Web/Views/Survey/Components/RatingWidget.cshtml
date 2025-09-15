@@ -1,0 +1,16 @@
+@model dynamic
+<div class="rating-widget" data-entity-type="@Model.EntityType" data-entity-id="@Model.EntityId">
+    <div class="stars d-flex gap-2">
+        @for (int i = 1; i <= 5; i++)
+        {
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="rating" value="@i" id="r@i">
+                <label class="form-check-label" for="r@i">@i</label>
+            </div>
+        }
+    </div>
+    <div class="rating-comment mt-2">
+        <textarea class="form-control" placeholder="اكتب تعليقك هنا..."></textarea>
+        <button class="btn btn-primary submit-rating mt-2">إرسال التقييم</button>
+    </div>
+</div>
