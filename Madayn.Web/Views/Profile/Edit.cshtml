@@ -1,0 +1,224 @@
+@model Madayn.Web.Services.EditProfileViewModel
+@{
+    ViewData["Title"] = Localizer["EditProfile"];
+}
+
+<div class="edit-profile-container">
+    <div class="page-header">
+        <h2>@Localizer["EditProfile"]</h2>
+        <p class="text-muted">@Localizer["UpdateProfileDescription"]</p>
+    </div>
+
+    <form asp-action="Edit" method="post" enctype="multipart/form-data" class="edit-profile-form">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+        <div class="profile-image-section">
+            <h4>@Localizer["ProfileImage"]</h4>
+            <div class="image-upload-container">
+                <div class="current-image">
+                    @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
+                    {
+                        <img id="profileImagePreview" src="@Model.ProfileImageUrl" alt="Profile" class="profile-image-preview" />
+                    }
+                    else
+                    {
+                        <div id="profileImagePreview" class="profile-image-placeholder">
+                            <i class="fas fa-user fa-3x"></i>
+                        </div>
+                    }
+                </div>
+                <div class="image-upload-controls">
+                    <div class="form-group">
+                        <label for="profileImage" class="btn btn-outline-primary">
+                            <i class="fas fa-upload"></i> @Localizer["ChooseImage"]
+                        </label>
+                        <input type="file" id="profileImage" name="profileImage" accept="image/*" style="display:none" onchange="previewImage(this)" />
+                    </div>
+                    @if (!string.IsNullOrEmpty(Model.ProfileImageUrl))
+                    {
+                        <button type="button" class="btn btn-outline-danger" onclick="deleteProfileImage()">
+                            <i class="fas fa-trash"></i> @Localizer["DeleteImage"]
+                        </button>
+                    }
+                    <small class="form-text text-muted">@Localizer["ImageUploadHelp"]</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h4>@Localizer["BasicInformation"]</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="form-label">@Localizer["FirstName"]</label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="LastName" class="form-label">@Localizer["LastName"]</label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DisplayName" class="form-label">@Localizer["DisplayName"]</label>
+                <input asp-for="DisplayName" class="form-control" />
+                <span asp-validation-for="DisplayName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Bio" class="form-label">@Localizer["Bio"]</label>
+                <textarea asp-for="Bio" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Bio" class="text-danger"></span>
+                <div class="character-count"><span id="bioCharCount">0</span> / 1000</div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h4>@Localizer["ProfessionalInformation"]</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Position" class="form-label">@Localizer["Position"]</label>
+                        <input asp-for="Position" class="form-control" />
+                        <span asp-validation-for="Position" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Company" class="form-label">@Localizer["Company"]</label>
+                        <input asp-for="Company" class="form-control" />
+                        <span asp-validation-for="Company" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="RegionId" class="form-label">@Localizer["PreferredRegion"]</label>
+                <select asp-for="RegionId" class="form-select">
+                    <option value="">@Localizer["SelectRegion"]</option>
+                </select>
+                <span asp-validation-for="RegionId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h4>@Localizer["ContactInformation"]</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Phone" class="form-label">@Localizer["Phone"]</label>
+                        <input asp-for="Phone" class="form-control" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Website" class="form-label">@Localizer["Website"]</label>
+                        <input asp-for="Website" class="form-control" />
+                        <span asp-validation-for="Website" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="LinkedIn" class="form-label">@Localizer["LinkedIn"]</label>
+                        <input asp-for="LinkedIn" class="form-control" />
+                        <span asp-validation-for="LinkedIn" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Twitter" class="form-label">@Localizer["Twitter"]</label>
+                        <input asp-for="Twitter" class="form-control" />
+                        <span asp-validation-for="Twitter" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h4>@Localizer["PrivacySettings"]</h4>
+            <div class="privacy-options">
+                <div class="form-check">
+                    <input asp-for="ShowEmail" class="form-check-input" type="checkbox" />
+                    <label asp-for="ShowEmail" class="form-check-label">@Localizer["ShowEmailPublicly"]</label>
+                </div>
+                <div class="form-check">
+                    <input asp-for="ShowPhone" class="form-check-input" type="checkbox" />
+                    <label asp-for="ShowPhone" class="form-check-label">@Localizer["ShowPhonePublicly"]</label>
+                </div>
+                <div class="form-check">
+                    <input asp-for="ShowSocialMedia" class="form-check-input" type="checkbox" />
+                    <label asp-for="ShowSocialMedia" class="form-check-label">@Localizer["ShowSocialMediaLinks"]</label>
+                </div>
+                <div class="form-check">
+                    <input asp-for="AllowMessages" class="form-check-input" type="checkbox" />
+                    <label asp-for="AllowMessages" class="form-check-label">@Localizer["AllowReceivingMessages"]</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-lg"><i class="fas fa-save"></i> @Localizer["SaveChanges"]</button>
+            <a href="@Url.Action("Index")" class="btn btn-secondary"><i class="fas fa-times"></i> @Localizer["Cancel"]</a>
+        </div>
+    </form>
+</div>
+
+<script>
+function previewImage(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var preview = document.getElementById('profileImagePreview');
+            if (preview.tagName === 'IMG') {
+                preview.src = e.target.result;
+            } else {
+                var img = document.createElement('img');
+                img.id = 'profileImagePreview';
+                img.src = e.target.result;
+                img.className = 'profile-image-preview';
+                preview.parentNode.replaceChild(img, preview);
+            }
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+function deleteProfileImage() {
+    if (confirm('@Localizer["ConfirmDeleteImage"]')) {
+        fetch('@Url.Action("DeleteProfileImage")', {
+            method: 'POST',
+            headers: {
+                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+            }
+        })
+            .then(r => r.json())
+            .then(data => {
+                if (data.success) {
+                    var preview = document.getElementById('profileImagePreview');
+                    var placeholder = document.createElement('div');
+                    placeholder.id = 'profileImagePreview';
+                    placeholder.className = 'profile-image-placeholder';
+                    placeholder.innerHTML = '<i class="fas fa-user fa-3x"></i>';
+                    preview.parentNode.replaceChild(placeholder, preview);
+                }
+                alert(data.message);
+            });
+    }
+}
+document.addEventListener('DOMContentLoaded', function () {
+    var bio = document.querySelector('textarea[name="Bio"]');
+    var counter = document.getElementById('bioCharCount');
+    if (bio && counter) {
+        function update() { counter.textContent = bio.value.length; }
+        bio.addEventListener('input', update); update();
+    }
+});
+</script>
