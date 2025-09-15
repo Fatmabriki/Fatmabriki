@@ -1,0 +1,42 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  font-family: 'Tajawal', 'Arial', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+:root {
+  --madayn-purple: #4A1A4A;
+  --madayn-red: #B85450;
+  --madayn-orange: #E89B5A;
+  --madayn-light: #F8F6F9;
+  --madayn-gradient: linear-gradient(135deg, var(--madayn-purple), var(--madayn-red));
+}
+
+.navbar {
+  background: var(--madayn-gradient);
+}
+
+.btn-primary {
+  background-color: var(--madayn-purple);
+  border-color: var(--madayn-purple);
+}

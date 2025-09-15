@@ -1,0 +1,44 @@
+@model MadaynPlatform.Web.Models.Survey
+@{
+    ViewData["Title"] = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var responseId = (int)ViewData["UserResponseId"];
+}
+<div class="container py-4">
+    <h2 class="mb-3">@Model.Title</h2>
+    <p class="text-muted">@Model.Description</p>
+    <form asp-action="SubmitSurvey" asp-route-id="@Model.SurveyId" method="post">
+        <input type="hidden" name="UserResponseId" value="@responseId" />
+        @for (int i = 0; i < Model.Questions.Count; i++)
+        {
+            var q = Model.Questions.OrderBy(q => q.OrderIndex).ElementAt(i);
+            <div class="mb-4">
+                <label class="form-label fw-bold">@q.QuestionText</label>
+                @if (q.QuestionType == "Text")
+                {
+                    <input type="hidden" name="Answers[@i].QuestionId" value="@q.QuestionId" />
+                    <textarea name="Answers[@i].AnswerText" class="form-control"></textarea>
+                }
+                else if (q.QuestionType == "YesNo")
+                {
+                    <input type="hidden" name="Answers[@i].QuestionId" value="@q.QuestionId" />
+                    <select name="Answers[@i].AnswerText" class="form-select">
+                        <option value="نعم">نعم</option>
+                        <option value="لا">لا</option>
+                    </select>
+                }
+                else if (q.QuestionType == "Rating")
+                {
+                    <input type="hidden" name="Answers[@i].QuestionId" value="@q.QuestionId" />
+                    <input type="number" name="Answers[@i].AnswerValue" class="form-control" min="1" max="5" />
+                }
+                else
+                {
+                    <input type="hidden" name="Answers[@i].QuestionId" value="@q.QuestionId" />
+                    <input type="text" name="Answers[@i].AnswerText" class="form-control" />
+                }
+            </div>
+        }
+        <button type="submit" class="btn btn-success">إرسال</button>
+    </form>
+</div>

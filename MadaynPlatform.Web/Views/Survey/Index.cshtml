@@ -1,0 +1,26 @@
+@model IEnumerable<MadaynPlatform.Web.Models.Survey>
+@{
+    ViewData["Title"] = "الاستطلاعات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container py-4">
+    <h2 class="mb-4">الاستطلاعات المتاحة</h2>
+    <div class="row g-3">
+        @foreach (var s in Model)
+        {
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">@s.Title</h5>
+                        <p class="card-text">@s.Description</p>
+                        <a asp-controller="Survey" asp-action="TakeSurvey" asp-route-id="@s.SurveyId" class="btn btn-primary">ابدأ</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info mt-3">لا توجد استطلاعات حالياً.</div>
+    }
+    </div>
