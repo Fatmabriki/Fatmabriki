@@ -1,0 +1,26 @@
+@{
+    var item = (dynamic)ViewBag.Item;
+    ViewData["Title"] = item.Title;
+    var lang = System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+}
+<div class="container py-3">
+    <h2 class="mb-3">@item.Title</h2>
+    @if (!string.IsNullOrEmpty((string?)item.ImageUrl)) {<img src="@item.ImageUrl" class="img-fluid mb-3" alt="" />}
+    <div class="mb-4">@Html.Raw(item.Content)</div>
+    <div class="d-flex gap-2 mb-3">
+        <button class="btn btn-outline-primary" onclick="rate(5)">★★★★★</button>
+        <button class="btn btn-outline-primary" onclick="rate(4)">★★★★</button>
+        <button class="btn btn-outline-primary" onclick="rate(3)">★★★</button>
+        <button class="btn btn-outline-primary" onclick="rate(2)">★★</button>
+        <button class="btn btn-outline-primary" onclick="rate(1)">★</button>
+    </div>
+    <div class="mb-3">
+        <textarea id="commentText" class="form-control" rows="3" placeholder="@Localizer["AdditionalComments"]"></textarea>
+        <button class="btn btn-primary mt-2" onclick="comment()">@Localizer["Submit"]</button>
+    </div>
+</div>
+<script>
+function sid(){ let s=localStorage.getItem('madayn_session'); if(!s){ s=crypto.randomUUID(); localStorage.setItem('madayn_session',s);} return s; }
+function rate(score){ fetch('/api/ratings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({entityType:'News',entityId:@item.NewsId,score:score,sessionId:sid()})}).then(()=>alert('OK')); }
+function comment(){ const t=document.getElementById('commentText').value; fetch('/api/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({entityType:'News',entityId:@item.NewsId,text:t,name:'Anon'})}).then(()=>alert('@Localizer["SubmittedForModeration"]')); }
+</script>

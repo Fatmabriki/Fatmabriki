@@ -53,6 +53,14 @@ public class ApplicationDbContext : IdentityDbContext
             .HasForeignKey(a => a.UserId)
             .OnDelete(DeleteBehavior.Cascade);
 
+        // Unique evaluations per user/session per survey
+        builder.Entity<SurveyEvaluation>()
+            .HasIndex(e => new { e.SurveyId, e.AnonymousSessionId })
+            .IsUnique();
+        builder.Entity<SurveyEvaluation>()
+            .HasIndex(e => new { e.SurveyId, e.UserId })
+            .IsUnique();
+
         // Seed regions minimal example (will expand later)
         builder.Entity<MadaynRegion>().HasData(
             new MadaynRegion { RegionId = 1, RegionNameAr = "صحار", RegionNameEn = "Sohar", DescriptionAr = "المنطقة الحرة بصحار", DescriptionEn = "Sohar Free Zone", IsActive = true },

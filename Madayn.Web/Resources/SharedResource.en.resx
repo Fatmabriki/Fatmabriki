@@ -64,4 +64,8 @@
   <data name="AgreeToTerms" xml:space="preserve"><value>I agree to the terms</value></data>
   <data name="RegisterButton" xml:space="preserve"><value>Create account</value></data>
   <data name="InvalidLogin" xml:space="preserve"><value>Invalid login attempt</value></data>
+  <data name="News" xml:space="preserve"><value>News</value></data>
+  <data name="Details" xml:space="preserve"><value>Details</value></data>
+  <data name="Submit" xml:space="preserve"><value>Submit</value></data>
+  <data name="SubmittedForModeration" xml:space="preserve"><value>Submitted for moderation</value></data>
 </root>
