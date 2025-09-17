@@ -87,4 +87,54 @@ public class ReportsApiController : ControllerBase
         }
         return Ok(result);
     }
+
+    [HttpGet("survey/{id}/summary")]
+    public async Task<IActionResult> SurveySummary(int id, string? culture = null)
+    {
+        var isAr = (culture ?? CultureInfo.CurrentCulture.TwoLetterISOLanguageName) == "ar";
+        var s = await _context.Surveys.Include(x => x.Region).FirstOrDefaultAsync(x => x.SurveyId == id);
+        if (s == null) return NotFound();
+        var total = await _context.SurveyEvaluations.CountAsync(e => e.SurveyId == id);
+        return Ok(new
+        {
+            id = s.SurveyId,
+            title = isAr ? s.TitleAr : s.TitleEn,
+            description = isAr ? s.DescriptionAr : s.DescriptionEn,
+            region = s.RegionId == null ? null : (isAr ? s.Region!.RegionNameAr : s.Region!.RegionNameEn),
+            startDate = s.StartDate,
+            endDate = s.EndDate,
+            totalEvaluations = total,
+            avg = s.AverageRating,
+            totalRatings = s.TotalRatings
+        });
+    }
+
+    [HttpGet("survey/{id}/evaluations")] 
+    public async Task<IActionResult> EvaluationsList(int id, string? culture = null)
+    {
+        var isAr = (culture ?? CultureInfo.CurrentCulture.TwoLetterISOLanguageName) == "ar";
+        var regions = await _context.MadaynRegions.ToDictionaryAsync(r => r.RegionId, r => new { r.RegionNameAr, r.RegionNameEn });
+
+        var userIdToRole = await (from p in _context.UserProfiles
+                                  join ur in _context.UserRoles on p.AspNetUserId equals ur.UserId
+                                  join r in _context.Roles on ur.RoleId equals r.Id
+                                  select new { p.UserId, r.Name }).ToListAsync();
+        var roleByUser = userIdToRole.GroupBy(x => x.UserId).ToDictionary(g => g.Key, g => g.Select(x => x.Name).ToHashSet());
+
+        var evals = await _context.SurveyEvaluations
+            .Where(e => e.SurveyId == id)
+            .OrderByDescending(e => e.EvaluatedAt)
+            .Select(e => new { e.EvaluationId, e.UserId, e.RegionId, e.OverallRating, e.EvaluatedAt })
+            .ToListAsync();
+
+        var list = evals.Select(e => new
+        {
+            evaluatedAt = e.EvaluatedAt,
+            overall = e.OverallRating,
+            role = e.UserId.HasValue ? (roleByUser.TryGetValue(e.UserId.Value, out var roles) && roles.Contains("Employee") ? "Employee" : "Investor") : "Guest",
+            region = e.RegionId.HasValue && regions.ContainsKey(e.RegionId.Value) ? (isAr ? regions[e.RegionId.Value].RegionNameAr : regions[e.RegionId.Value].RegionNameEn) : null
+        }).ToList();
+
+        return Ok(list);
+    }
 }

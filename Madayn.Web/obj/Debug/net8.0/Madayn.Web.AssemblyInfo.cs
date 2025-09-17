@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Madayn.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4e1761f6ac2ec6b29a046b379df0c666096cf801")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+60973daa881edcf2d1b2632acc5eafe0c5324e7e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Madayn.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Madayn.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
