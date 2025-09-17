@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hqIN4KsPV9GFXg0EiiWVRQYM/VNiNQX5Xd7CkvmT5yg=",
+  "Hash": "zzMRfKyrUoX0CG5Q/E7uIeue3nZK5l8SAZbJleLPNso=",
   "Source": "Madayn.Web",
   "BasePath": "_content/Madayn.Web",
   "Mode": "Default",
@@ -1250,6 +1250,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/workspace/Madayn.Web/wwwroot/images/madayn-logo.svg",
+      "SourceId": "Madayn.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/workspace/Madayn.Web/wwwroot/",
+      "BasePath": "_content/Madayn.Web",
+      "RelativePath": "images/madayn-logo.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/madayn-logo.svg"
     },
     {
       "Identity": "/workspace/Madayn.Web/wwwroot/js/site.js",

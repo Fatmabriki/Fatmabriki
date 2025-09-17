@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/workspace/Madayn.Web/wwwroot/images/madayn-logo.svg",
+      "PackagePath": "staticwebassets/images/madayn-logo.svg"
+    },
+    {
       "Id": "/workspace/Madayn.Web/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },

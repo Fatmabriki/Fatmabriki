@@ -48,4 +48,20 @@
   <data name="ProfileUpdatedSuccessfully" xml:space="preserve"><value>Profile updated successfully</value></data>
   <data name="ImageDeletedSuccessfully" xml:space="preserve"><value>Image deleted successfully</value></data>
   <data name="WelcomeMessage" xml:space="preserve"><value>Welcome to the Madayn Investment Survey Platform</value></data>
+  <data name="Login" xml:space="preserve"><value>Login</value></data>
+  <data name="LoginTitle" xml:space="preserve"><value>Sign in to your account</value></data>
+  <data name="Email" xml:space="preserve"><value>Email</value></data>
+  <data name="Password" xml:space="preserve"><value>Password</value></data>
+  <data name="RememberMe" xml:space="preserve"><value>Remember me</value></data>
+  <data name="LoginButton" xml:space="preserve"><value>Login</value></data>
+  <data name="Register" xml:space="preserve"><value>Register</value></data>
+  <data name="RegisterTitle" xml:space="preserve"><value>Create a new account</value></data>
+  <data name="ConfirmPassword" xml:space="preserve"><value>Confirm password</value></data>
+  <data name="SelectRole" xml:space="preserve"><value>Select role</value></data>
+  <data name="InvestorRole" xml:space="preserve"><value>Investor</value></data>
+  <data name="EmployeeRole" xml:space="preserve"><value>Employee</value></data>
+  <data name="GuestRole" xml:space="preserve"><value>Guest</value></data>
+  <data name="AgreeToTerms" xml:space="preserve"><value>I agree to the terms</value></data>
+  <data name="RegisterButton" xml:space="preserve"><value>Create account</value></data>
+  <data name="InvalidLogin" xml:space="preserve"><value>Invalid login attempt</value></data>
 </root>

@@ -15,7 +15,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Localization
@@ -36,6 +37,10 @@ builder.Services
 // App services
 builder.Services.AddScoped<IImageService, ImageService>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
+builder.Services.AddScoped<ICRUDService<Madayn.Web.Models.Survey>, Madayn.Web.Services.SurveyService>();
+builder.Services.AddScoped<ICRUDService<Madayn.Web.Models.News>, Madayn.Web.Services.NewsService>();
+builder.Services.AddScoped<ICRUDService<Madayn.Web.Models.Consultant>, Madayn.Web.Services.ConsultantService>();
+builder.Services.AddScoped<ICRUDService<Madayn.Web.Models.Contractor>, Madayn.Web.Services.ContractorService>();
 
 var app = builder.Build();
 
@@ -73,5 +78,11 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}",
     defaults: new { culture = "ar" });
 app.MapRazorPages();
+
+// Seed roles and default admin
+using (var scope = app.Services.CreateScope())
+{
+    await Madayn.Web.Data.IdentityDataSeeder.SeedAsync(scope.ServiceProvider);
+}
 
 app.Run();

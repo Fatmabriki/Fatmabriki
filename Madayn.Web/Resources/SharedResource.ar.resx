@@ -48,4 +48,20 @@
   <data name="ProfileUpdatedSuccessfully" xml:space="preserve"><value>تم تحديث الملف الشخصي بنجاح</value></data>
   <data name="ImageDeletedSuccessfully" xml:space="preserve"><value>تم حذف الصورة بنجاح</value></data>
   <data name="WelcomeMessage" xml:space="preserve"><value>مرحباً بك في منصة مدائن للاستطلاعات والتقييم</value></data>
+  <data name="Login" xml:space="preserve"><value>تسجيل الدخول</value></data>
+  <data name="LoginTitle" xml:space="preserve"><value>سجل دخولك إلى حسابك</value></data>
+  <data name="Email" xml:space="preserve"><value>البريد الإلكتروني</value></data>
+  <data name="Password" xml:space="preserve"><value>كلمة المرور</value></data>
+  <data name="RememberMe" xml:space="preserve"><value>تذكرني</value></data>
+  <data name="LoginButton" xml:space="preserve"><value>دخول</value></data>
+  <data name="Register" xml:space="preserve"><value>تسجيل</value></data>
+  <data name="RegisterTitle" xml:space="preserve"><value>إنشاء حساب جديد</value></data>
+  <data name="ConfirmPassword" xml:space="preserve"><value>تأكيد كلمة المرور</value></data>
+  <data name="SelectRole" xml:space="preserve"><value>اختر الدور</value></data>
+  <data name="InvestorRole" xml:space="preserve"><value>مستثمر</value></data>
+  <data name="EmployeeRole" xml:space="preserve"><value>موظف</value></data>
+  <data name="GuestRole" xml:space="preserve"><value>ضيف</value></data>
+  <data name="AgreeToTerms" xml:space="preserve"><value>أوافق على الشروط</value></data>
+  <data name="RegisterButton" xml:space="preserve"><value>إنشاء الحساب</value></data>
+  <data name="InvalidLogin" xml:space="preserve"><value>محاولة دخول غير صحيحة</value></data>
 </root>

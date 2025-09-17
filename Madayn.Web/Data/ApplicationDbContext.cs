@@ -15,6 +15,15 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<ProfileImageHistory> ProfileImageHistory => Set<ProfileImageHistory>();
     public DbSet<UserActivity> UserActivities => Set<UserActivity>();
     public DbSet<MadaynRegion> MadaynRegions => Set<MadaynRegion>();
+    public DbSet<Survey> Surveys => Set<Survey>();
+    public DbSet<SurveyQuestion> SurveyQuestions => Set<SurveyQuestion>();
+    public DbSet<News> News => Set<News>();
+    public DbSet<Consultant> Consultants => Set<Consultant>();
+    public DbSet<Contractor> Contractors => Set<Contractor>();
+    public DbSet<Comment> Comments => Set<Comment>();
+    public DbSet<Rating> Ratings => Set<Rating>();
+    public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
+    public DbSet<AnonymousSession> AnonymousSessions => Set<AnonymousSession>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
