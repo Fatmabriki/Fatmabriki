@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = Localizer["SurveyEvaluation"];
+    var surveyId = (int)ViewBag.SurveyId;
+}
+<div class="container py-3">
+    <h3 class="mb-3">@Localizer["SurveyEvaluation"] (#@surveyId)</h3>
+    <canvas id="regionalChart" height="120"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+fetch(`/api/reports/survey/${@surveyId}/regional-breakdown`)
+    .then(r => r.json())
+    .then(data => {
+        const ctx = document.getElementById('regionalChart');
+        new Chart(ctx, {
+            type: 'bar',
+            data: { labels: data.regions, datasets: [{ label: 'Avg', data: data.ratings, backgroundColor: 'rgba(0,102,204,.8)' }] },
+            options: { responsive: true }
+        });
+    });
+</script>

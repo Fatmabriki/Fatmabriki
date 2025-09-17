@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Madayn.Web")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute(" ")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a04a080e98b0f48dff10045c9f3a091fff8f0ade")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef8c4271eaae18f28911e8d134bfa1d0221cf726")]
 [assembly: System.Reflection.AssemblyProductAttribute("Madayn.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Madayn.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

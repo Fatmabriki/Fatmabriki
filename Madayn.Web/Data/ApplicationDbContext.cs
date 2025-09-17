@@ -24,6 +24,8 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Rating> Ratings => Set<Rating>();
     public DbSet<AuditLog> AuditLogs => Set<AuditLog>();
     public DbSet<AnonymousSession> AnonymousSessions => Set<AnonymousSession>();
+    public DbSet<SurveyEvaluation> SurveyEvaluations => Set<SurveyEvaluation>();
+    public DbSet<SurveyAnswer> SurveyAnswers => Set<SurveyAnswer>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
