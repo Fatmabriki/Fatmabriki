@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = Localizer["PeerEvaluation"];
+    var employeeId = (int)ViewBag.EmployeeId;
+}
+<div class="container py-3">
+    <h3>@Localizer["PeerEvaluation"]</h3>
+    <form method="post">
+        <div class="mb-2">
+            <label class="form-label">@Localizer["Performance"] (1-5)</label>
+            <input name="performanceRating" type="number" min="1" max="5" class="form-control" required />
+        </div>
+        <div class="mb-2">
+            <label class="form-label">@Localizer["Teamwork"] (1-5)</label>
+            <input name="teamworkRating" type="number" min="1" max="5" class="form-control" required />
+        </div>
+        <div class="mb-2">
+            <label class="form-label">@Localizer["Communication"] (1-5)</label>
+            <input name="communicationRating" type="number" min="1" max="5" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">@Localizer["Comments"]</label>
+            <textarea name="comments" class="form-control" rows="3"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">@Localizer["Submit"]</button>
+    </form>
+</div>
