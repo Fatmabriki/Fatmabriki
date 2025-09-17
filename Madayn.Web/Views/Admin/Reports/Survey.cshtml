@@ -1,0 +1,66 @@
+@{
+    ViewData["Title"] = Localizer["SurveyEvaluation"];
+    var surveyId = (int)ViewBag.SurveyId;
+}
+<div class="container py-3">
+    <h3 class="mb-3">@Localizer["SurveyEvaluation"] (#@surveyId)</h3>
+    <div id="summary" class="mb-3 small text-muted"></div>
+    <div class="row g-3">
+        <div class="col-lg-6">
+            <div class="card p-3">
+                <h5>@Localizer["RegionalBreakdown"]</h5>
+                <canvas id="regionalChart" height="140"></canvas>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card p-3">
+                <h5>@Localizer["EvaluationsTimeline"]</h5>
+                <canvas id="evalTimeline" height="140"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="card p-3 mt-3">
+        <h5>@Localizer["PerQuestionBreakdown"]</h5>
+        <div id="questions"></div>
+    </div>
+    <div class="card p-3 mt-3">
+        <h5>@Localizer["RawEvaluations"]</h5>
+        <table class="table table-sm"><thead><tr><th>@Localizer["Date"]</th><th>@Localizer["Role"]</th><th>@Localizer["Region"]</th><th>@Localizer["Overall"]</th></tr></thead><tbody id="evalRows"></tbody></table>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const sid = @surveyId;
+const lang = document.documentElement.lang;
+
+fetch(`/api/reports/survey/${sid}/summary?culture=${lang}`).then(r=>r.json()).then(s=>{
+  document.getElementById('summary').innerText = `${s.title} | ${s.region??'-'} | ${s.startDate??''} - ${s.endDate??''} | Avg: ${s.avg} (${s.totalRatings}) | Total evals: ${s.totalEvaluations}`;
+});
+
+fetch(`/api/reports/survey/${sid}/regional-breakdown`).then(r=>r.json()).then(data=>{
+  const ctx = document.getElementById('regionalChart');
+  new Chart(ctx,{type:'bar',data:{labels:data.regions,datasets:[{label:'Avg',data:data.ratings,backgroundColor:'rgba(0,102,204,.8)'}]},options:{responsive:true}});
+});
+
+fetch(`/api/reports/survey/${sid}/questions-breakdown?culture=${lang}`).then(r=>r.json()).then(items=>{
+  const container = document.getElementById('questions');
+  items.forEach((q,i)=>{
+    const c = document.createElement('canvas'); c.height=120; container.appendChild(document.createTextNode(`${i+1}. ${q.text}`)); container.appendChild(c);
+    new Chart(c.getContext('2d'),{type:'bar',data:{labels:['1','2','3','4','5'],datasets:[
+      {label:'All',data:q.ratings,backgroundColor:'rgba(0,102,204,.7)'},
+      {label:'Guest',data:q.guest,backgroundColor:'rgba(160,160,160,.6)'},
+      {label:'Investor',data:q.investor,backgroundColor:'rgba(0,166,81,.6)'},
+      {label:'Employee',data:q.employee,backgroundColor:'rgba(255,107,53,.6)'}
+    ]},options:{responsive:true,indexAxis:'x',scales:{x:{stacked:true},y:{stacked:true}}});
+  });
+});
+
+fetch(`/api/reports/survey/${sid}/evaluations?culture=${lang}`).then(r=>r.json()).then(rows=>{
+  const tbody = document.getElementById('evalRows');
+  rows.forEach(x=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>${new Date(x.evaluatedAt).toLocaleString()}</td><td>${x.role}</td><td>${x.region??''}</td><td>${x.overall}</td>`;
+    tbody.appendChild(tr);
+  });
+});
+</script>

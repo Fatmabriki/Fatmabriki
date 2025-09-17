@@ -1,0 +1,32 @@
+@model IEnumerable<Madayn.Web.Models.EmployeeEvaluation>
+@{
+    ViewData["Title"] = Localizer["MyEvaluations"];
+}
+<div class="container py-3">
+    <h3>@Localizer["MyEvaluations"]</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>@Localizer["Employee"]</th>
+                <th>@Localizer["Performance"]</th>
+                <th>@Localizer["Teamwork"]</th>
+                <th>@Localizer["Communication"]</th>
+                <th>@Localizer["Period"]</th>
+                <th>@Localizer["Published"]</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var e in Model)
+        {
+            <tr>
+                <td>@e.EmployeeId</td>
+                <td>@e.PerformanceRating</td>
+                <td>@e.TeamworkRating</td>
+                <td>@e.CommunicationRating</td>
+                <td>@e.EvaluationPeriod</td>
+                <td>@(e.IsPublished?"Yes":"No")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

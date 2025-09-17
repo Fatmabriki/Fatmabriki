@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value></resheader>
+  <data name="SiteTitle" xml:space="preserve"><value>منصة مدائن للاستطلاعات والتقييم</value></data>
+  <data name="Home" xml:space="preserve"><value>الرئيسية</value></data>
+  <data name="Privacy" xml:space="preserve"><value>الخصوصية</value></data>
+  <data name="Profile" xml:space="preserve"><value>الملف الشخصي</value></data>
+  <data name="ChangePhoto" xml:space="preserve"><value>تغيير الصورة</value></data>
+  <data name="EditProfile" xml:space="preserve"><value>تعديل الملف الشخصي</value></data>
+  <data name="About" xml:space="preserve"><value>نبذة</value></data>
+  <data name="Activity" xml:space="preserve"><value>النشاط</value></data>
+  <data name="SurveysCompleted" xml:space="preserve"><value>الاستطلاعات المكتملة</value></data>
+  <data name="CommentsPosted" xml:space="preserve"><value>التعليقات المنشورة</value></data>
+  <data name="RatingsGiven" xml:space="preserve"><value>التقييمات المقدمة</value></data>
+  <data name="ContactInformation" xml:space="preserve"><value>معلومات التواصل</value></data>
+  <data name="Website" xml:space="preserve"><value>الموقع الإلكتروني</value></data>
+  <data name="SocialMedia" xml:space="preserve"><value>وسائل التواصل</value></data>
+  <data name="EditProfileTitle" xml:space="preserve"><value>تعديل الملف الشخصي</value></data>
+  <data name="UpdateProfileDescription" xml:space="preserve"><value>حدّث بيانات ملفك الشخصي أدناه</value></data>
+  <data name="ProfileImage" xml:space="preserve"><value>صورة الملف</value></data>
+  <data name="ChooseImage" xml:space="preserve"><value>اختيار صورة</value></data>
+  <data name="DeleteImage" xml:space="preserve"><value>حذف الصورة</value></data>
+  <data name="ImageUploadHelp" xml:space="preserve"><value>PNG/JPG حتى 5 ميغابايت</value></data>
+  <data name="BasicInformation" xml:space="preserve"><value>المعلومات الأساسية</value></data>
+  <data name="FirstName" xml:space="preserve"><value>الاسم الأول</value></data>
+  <data name="LastName" xml:space="preserve"><value>اسم العائلة</value></data>
+  <data name="DisplayName" xml:space="preserve"><value>الاسم المعروض</value></data>
+  <data name="Bio" xml:space="preserve"><value>نبذة</value></data>
+  <data name="ProfessionalInformation" xml:space="preserve"><value>المعلومات المهنية</value></data>
+  <data name="Position" xml:space="preserve"><value>المنصب</value></data>
+  <data name="Company" xml:space="preserve"><value>الشركة</value></data>
+  <data name="PreferredRegion" xml:space="preserve"><value>المنطقة المفضلة</value></data>
+  <data name="SelectRegion" xml:space="preserve"><value>اختر المنطقة</value></data>
+  <data name="Phone" xml:space="preserve"><value>الهاتف</value></data>
+  <data name="LinkedIn" xml:space="preserve"><value>لينكدإن</value></data>
+  <data name="Twitter" xml:space="preserve"><value>تويتر</value></data>
+  <data name="PrivacySettings" xml:space="preserve"><value>إعدادات الخصوصية</value></data>
+  <data name="ShowEmailPublicly" xml:space="preserve"><value>إظهار البريد الإلكتروني للعامة</value></data>
+  <data name="ShowPhonePublicly" xml:space="preserve"><value>إظهار رقم الهاتف للعامة</value></data>
+  <data name="ShowSocialMediaLinks" xml:space="preserve"><value>إظهار روابط التواصل الاجتماعي</value></data>
+  <data name="AllowReceivingMessages" xml:space="preserve"><value>السماح باستقبال الرسائل</value></data>
+  <data name="SaveChanges" xml:space="preserve"><value>حفظ التغييرات</value></data>
+  <data name="Cancel" xml:space="preserve"><value>إلغاء</value></data>
+  <data name="ConfirmDeleteImage" xml:space="preserve"><value>هل أنت متأكد من حذف الصورة؟</value></data>
+  <data name="ProfileUpdatedSuccessfully" xml:space="preserve"><value>تم تحديث الملف الشخصي بنجاح</value></data>
+  <data name="ImageDeletedSuccessfully" xml:space="preserve"><value>تم حذف الصورة بنجاح</value></data>
+  <data name="WelcomeMessage" xml:space="preserve"><value>مرحباً بك في منصة مدائن للاستطلاعات والتقييم</value></data>
+  <data name="Login" xml:space="preserve"><value>تسجيل الدخول</value></data>
+  <data name="LoginTitle" xml:space="preserve"><value>سجل دخولك إلى حسابك</value></data>
+  <data name="Email" xml:space="preserve"><value>البريد الإلكتروني</value></data>
+  <data name="Password" xml:space="preserve"><value>كلمة المرور</value></data>
+  <data name="RememberMe" xml:space="preserve"><value>تذكرني</value></data>
+  <data name="LoginButton" xml:space="preserve"><value>دخول</value></data>
+  <data name="Register" xml:space="preserve"><value>تسجيل</value></data>
+  <data name="RegisterTitle" xml:space="preserve"><value>إنشاء حساب جديد</value></data>
+  <data name="ConfirmPassword" xml:space="preserve"><value>تأكيد كلمة المرور</value></data>
+  <data name="SelectRole" xml:space="preserve"><value>اختر الدور</value></data>
+  <data name="InvestorRole" xml:space="preserve"><value>مستثمر</value></data>
+  <data name="EmployeeRole" xml:space="preserve"><value>موظف</value></data>
+  <data name="GuestRole" xml:space="preserve"><value>ضيف</value></data>
+  <data name="AgreeToTerms" xml:space="preserve"><value>أوافق على الشروط</value></data>
+  <data name="RegisterButton" xml:space="preserve"><value>إنشاء الحساب</value></data>
+  <data name="InvalidLogin" xml:space="preserve"><value>محاولة دخول غير صحيحة</value></data>
+  <data name="News" xml:space="preserve"><value>الأخبار</value></data>
+  <data name="Details" xml:space="preserve"><value>التفاصيل</value></data>
+  <data name="Submit" xml:space="preserve"><value>إرسال</value></data>
+  <data name="SubmittedForModeration" xml:space="preserve"><value>تم الإرسال للمراجعة</value></data>
+</root>

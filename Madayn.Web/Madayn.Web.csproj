@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>aspnet-Madayn.Web-eeeeaef6-3a01-4140-8710-3ca77cce614c</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.20" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.20" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.20" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.20" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.20" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="8.*" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.*" />
+  </ItemGroup>
+
+</Project>
