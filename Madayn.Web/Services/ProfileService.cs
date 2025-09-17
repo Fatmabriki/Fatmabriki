@@ -13,6 +13,7 @@ public interface IProfileService
     Task UpdatePrivacySettingsAsync(int userId, PrivacySettingsViewModel model);
     Task UpdateNotificationSettingsAsync(int userId, NotificationSettingsViewModel model);
     Task LogActivityAsync(int userId, string type, string description);
+    Task<UserProfile> EnsureProfileForAspNetUserAsync(string aspNetUserId, string? email);
 }
 
 public class ProfileService : IProfileService
@@ -100,6 +101,25 @@ public class ProfileService : IProfileService
             CreatedAt = DateTime.UtcNow
         });
         await _context.SaveChangesAsync();
+    }
+
+    public async Task<UserProfile> EnsureProfileForAspNetUserAsync(string aspNetUserId, string? email)
+    {
+        var existing = await GetProfileByAspNetUserIdAsync(aspNetUserId);
+        if (existing != null) return existing;
+
+        string fallbackName = (email ?? "user@local").Split('@').FirstOrDefault() ?? "User";
+        var profile = new UserProfile
+        {
+            AspNetUserId = aspNetUserId,
+            FirstName = fallbackName,
+            LastName = "",
+            CreatedAt = DateTime.UtcNow,
+            IsActive = true
+        };
+        _context.UserProfiles.Add(profile);
+        await _context.SaveChangesAsync();
+        return profile;
     }
 }
 

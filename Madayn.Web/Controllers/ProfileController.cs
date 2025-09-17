@@ -27,11 +27,10 @@ public class ProfileController : BaseController
     private int GetCurrentUserId()
     {
         // This assumes a bridge exists between Identity and UserProfile
-        // For MVP, fetch by AspNetUserId
+        // Ensure profile exists for this user
         var aspId = _userManager.GetUserId(User)!;
-        var profile = _profileService.GetProfileByAspNetUserIdAsync(aspId).GetAwaiter().GetResult();
-        if (profile == null) throw new InvalidOperationException("Profile not found");
-        return profile.UserId;
+        var ensured = _profileService.EnsureProfileForAspNetUserAsync(aspId, _userManager.GetUserName(User)).GetAwaiter().GetResult();
+        return ensured.UserId;
     }
 
     [HttpGet("")]

@@ -10,13 +10,16 @@ public class AuthController : BaseController
 {
     private readonly UserManager<IdentityUser> _userManager;
     private readonly SignInManager<IdentityUser> _signInManager;
+    private readonly Madayn.Web.Services.IProfileService _profileService;
 
     public AuthController(IStringLocalizer<SharedResource> localizer,
         UserManager<IdentityUser> userManager,
-        SignInManager<IdentityUser> signInManager) : base(localizer)
+        SignInManager<IdentityUser> signInManager,
+        Madayn.Web.Services.IProfileService profileService) : base(localizer)
     {
         _userManager = userManager;
         _signInManager = signInManager;
+        _profileService = profileService;
     }
 
     [HttpGet("login")]
@@ -39,7 +42,15 @@ public class AuthController : BaseController
     {
         if (!ModelState.IsValid) return View(model);
         var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
-        if (result.Succeeded) return Redirect(returnUrl ?? Url.Action("Index", "Home", new { culture = GetCurrentLanguage() })!);
+        if (result.Succeeded)
+        {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user != null)
+            {
+                await _profileService.EnsureProfileForAspNetUserAsync(user.Id, user.Email);
+            }
+            return Redirect(returnUrl ?? Url.Action("Index", "Home", new { culture = GetCurrentLanguage() })!);
+        }
         ModelState.AddModelError(string.Empty, Localizer["InvalidLogin"].Value);
         return View(model);
     }
@@ -68,6 +79,7 @@ public class AuthController : BaseController
         if (result.Succeeded)
         {
             if (!string.IsNullOrEmpty(model.Role)) await _userManager.AddToRoleAsync(user, model.Role);
+            await _profileService.EnsureProfileForAspNetUserAsync(user.Id, user.Email);
             await _signInManager.SignInAsync(user, isPersistent: false);
             return RedirectToAction("Index", "Home", new { culture = GetCurrentLanguage() });
         }
